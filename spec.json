@@ -7,6 +7,14 @@
   "servers": [
     {
       "url": "http://localhost:3000"
+    },
+    {
+      "url": "https://registry.npmjs.org",
+      "description": ""
+    },
+    {
+      "url": "https://registry.yarnpkg.com",
+      "description": ""
     }
   ],
   "paths": {
