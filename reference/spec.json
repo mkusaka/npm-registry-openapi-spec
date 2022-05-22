@@ -1,0 +1,1201 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "spec",
+    "version": "1.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000"
+    }
+  ],
+  "paths": {
+    "/": {
+      "get": {
+        "summary": "get registry info",
+        "tags": [
+          "Meta Endpoints"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "operationId": "get-",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Registry"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/-/all": {
+      "get": {
+        "summary": "get registry",
+        "tags": [
+          "Meta Endpoints"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {}
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get---all"
+      }
+    },
+    "/{package}": {
+      "parameters": [
+        {
+          "schema": {
+            "type": "string"
+          },
+          "name": "package",
+          "in": "path",
+          "required": true,
+          "description": "the name of the package"
+        }
+      ],
+      "get": {
+        "summary": "get package",
+        "tags": [
+          "Package Endpoints"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Package"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-package",
+        "description": ""
+      }
+    },
+    "/{package}/{version}": {
+      "parameters": [
+        {
+          "schema": {
+            "type": "string"
+          },
+          "name": "package",
+          "in": "path",
+          "required": true,
+          "description": "the name of the package"
+        },
+        {
+          "schema": {
+            "type": "string"
+          },
+          "name": "version",
+          "in": "path",
+          "required": true,
+          "description": "a version number or `latest`"
+        }
+      ],
+      "get": {
+        "summary": "get specific version package",
+        "tags": [
+          "Package Endpoints"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "",
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "version": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "description": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "main": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "scripts": {
+                      "type": "object",
+                      "properties": {
+                        "test": {
+                          "type": "string",
+                          "minLength": 1
+                        }
+                      },
+                      "required": [
+                        "test"
+                      ]
+                    },
+                    "devDependencies": {
+                      "type": "object",
+                      "properties": {
+                        "tape": {
+                          "type": "string",
+                          "minLength": 1
+                        }
+                      },
+                      "required": [
+                        "tape"
+                      ]
+                    },
+                    "keywords": {
+                      "type": "array",
+                      "items": {
+                        "required": [],
+                        "properties": {}
+                      }
+                    },
+                    "repository": {
+                      "type": "object",
+                      "properties": {
+                        "url": {
+                          "type": "string",
+                          "minLength": 1
+                        },
+                        "type": {
+                          "type": "string",
+                          "minLength": 1
+                        }
+                      },
+                      "required": [
+                        "url",
+                        "type"
+                      ]
+                    },
+                    "author": {
+                      "type": "object",
+                      "properties": {
+                        "name": {
+                          "type": "string",
+                          "minLength": 1
+                        }
+                      },
+                      "required": [
+                        "name"
+                      ]
+                    },
+                    "license": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "gitHead": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "bugs": {
+                      "type": "object",
+                      "properties": {
+                        "url": {
+                          "type": "string",
+                          "minLength": 1
+                        }
+                      },
+                      "required": [
+                        "url"
+                      ]
+                    },
+                    "homepage": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "_id": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "_shasum": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "_from": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "_npmVersion": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "_nodeVersion": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "_npmUser": {
+                      "type": "object",
+                      "properties": {
+                        "name": {
+                          "type": "string",
+                          "minLength": 1
+                        },
+                        "email": {
+                          "type": "string",
+                          "minLength": 1
+                        }
+                      },
+                      "required": [
+                        "name",
+                        "email"
+                      ]
+                    },
+                    "dist": {
+                      "type": "object",
+                      "properties": {
+                        "shasum": {
+                          "type": "string",
+                          "minLength": 1
+                        },
+                        "tarball": {
+                          "type": "string",
+                          "minLength": 1
+                        }
+                      },
+                      "required": [
+                        "shasum",
+                        "tarball"
+                      ]
+                    },
+                    "maintainers": {
+                      "type": "array",
+                      "uniqueItems": true,
+                      "minItems": 1,
+                      "items": {
+                        "required": [
+                          "name",
+                          "email"
+                        ],
+                        "properties": {
+                          "name": {
+                            "type": "string",
+                            "minLength": 1
+                          },
+                          "email": {
+                            "type": "string",
+                            "minLength": 1
+                          }
+                        }
+                      }
+                    },
+                    "directories": {
+                      "type": "object",
+                      "properties": {},
+                      "required": []
+                    },
+                    "deprecated": {
+                      "type": "string",
+                      "minLength": 1
+                    }
+                  },
+                  "required": [
+                    "name",
+                    "version",
+                    "description",
+                    "main",
+                    "scripts",
+                    "devDependencies",
+                    "keywords",
+                    "repository",
+                    "author",
+                    "license",
+                    "gitHead",
+                    "bugs",
+                    "homepage",
+                    "_id",
+                    "_shasum",
+                    "_from",
+                    "_npmVersion",
+                    "_nodeVersion",
+                    "_npmUser",
+                    "dist",
+                    "maintainers",
+                    "directories",
+                    "deprecated"
+                  ],
+                  "x-examples": {
+                    "example-1": {
+                      "name": "left-pad",
+                      "version": "0.0.3",
+                      "description": "String left pad",
+                      "main": "index.js",
+                      "scripts": {
+                        "test": "node test"
+                      },
+                      "devDependencies": {
+                        "tape": "*"
+                      },
+                      "keywords": [
+                        "leftpad",
+                        "left",
+                        "pad",
+                        "padding",
+                        "string"
+                      ],
+                      "repository": {
+                        "url": "git+ssh://git@github.com/azer/left-pad.git",
+                        "type": "git"
+                      },
+                      "author": {
+                        "name": "azer"
+                      },
+                      "license": "WTFPL",
+                      "gitHead": "bff80e3ef0db0bfaba7698606c4f623433d14355",
+                      "bugs": {
+                        "url": "https://github.com/azer/left-pad/issues"
+                      },
+                      "homepage": "https://github.com/azer/left-pad#readme",
+                      "_id": "left-pad@0.0.3",
+                      "_shasum": "04d99b4a1eaf9e5f79c05e5d745d53edd1aa8aa1",
+                      "_from": ".",
+                      "_npmVersion": "3.7.5",
+                      "_nodeVersion": "5.1.1",
+                      "_npmUser": {
+                        "name": "westlac",
+                        "email": "cameron.westland@autodesk.com"
+                      },
+                      "dist": {
+                        "shasum": "04d99b4a1eaf9e5f79c05e5d745d53edd1aa8aa1",
+                        "tarball": "https://registry.npmjs.org/left-pad/-/left-pad-0.0.3.tgz"
+                      },
+                      "maintainers": [
+                        {
+                          "name": "westlac",
+                          "email": "cameron.westland@autodesk.com"
+                        }
+                      ],
+                      "directories": {},
+                      "deprecated": "use String.prototype.padStart()"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "",
+                  "type": "string",
+                  "x-examples": {
+                    "example-1": "version not found: 0.0.2345"
+                  }
+                },
+                "examples": {
+                  "example-1": {
+                    "value": "version not found: 0.0.2345"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-package-version"
+      }
+    },
+    "/-/v1/search": {
+      "get": {
+        "summary": "Your GET endpoint",
+        "tags": [
+          "Package Endpoints"
+        ],
+        "responses": {},
+        "operationId": "get---v1-search",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "text",
+            "description": "full-text search to apply"
+          },
+          {
+            "schema": {
+              "type": "integer"
+            },
+            "in": "query",
+            "name": "size",
+            "description": "how many results should be returned (default 20, max 250)"
+          },
+          {
+            "schema": {
+              "type": "integer"
+            },
+            "in": "query",
+            "name": "from",
+            "description": "offset to return results from"
+          },
+          {
+            "schema": {
+              "type": "number"
+            },
+            "in": "query",
+            "name": "quality",
+            "description": "how much of an effect should quality have on search results"
+          },
+          {
+            "schema": {
+              "type": "number"
+            },
+            "in": "query",
+            "name": "popularity",
+            "description": "how much of an effect should popularity have on search results"
+          },
+          {
+            "schema": {
+              "type": "number"
+            },
+            "in": "query",
+            "name": "maintenance",
+            "description": "how much of an effect should maintenance have on search results"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "description": "",
+                "type": "object",
+                "properties": {
+                  "objects": {
+                    "type": "array",
+                    "uniqueItems": true,
+                    "minItems": 1,
+                    "items": {
+                      "required": [
+                        "searchScore"
+                      ],
+                      "properties": {
+                        "package": {
+                          "type": "object",
+                          "properties": {
+                            "name": {
+                              "type": "string",
+                              "minLength": 1
+                            },
+                            "version": {
+                              "type": "string",
+                              "minLength": 1
+                            },
+                            "description": {
+                              "type": "string",
+                              "minLength": 1
+                            },
+                            "keywords": {
+                              "type": "array",
+                              "items": {
+                                "required": [],
+                                "properties": {}
+                              }
+                            },
+                            "date": {
+                              "type": "string",
+                              "minLength": 1
+                            },
+                            "links": {
+                              "type": "object",
+                              "properties": {
+                                "npm": {
+                                  "type": "string",
+                                  "minLength": 1
+                                },
+                                "homepage": {
+                                  "type": "string",
+                                  "minLength": 1
+                                },
+                                "repository": {
+                                  "type": "string",
+                                  "minLength": 1
+                                },
+                                "bugs": {
+                                  "type": "string",
+                                  "minLength": 1
+                                }
+                              },
+                              "required": [
+                                "npm",
+                                "homepage",
+                                "repository",
+                                "bugs"
+                              ]
+                            },
+                            "publisher": {
+                              "type": "object",
+                              "properties": {
+                                "username": {
+                                  "type": "string",
+                                  "minLength": 1
+                                },
+                                "email": {
+                                  "type": "string",
+                                  "minLength": 1
+                                }
+                              },
+                              "required": [
+                                "username",
+                                "email"
+                              ]
+                            },
+                            "maintainers": {
+                              "type": "array",
+                              "uniqueItems": true,
+                              "minItems": 1,
+                              "items": {
+                                "required": [
+                                  "username",
+                                  "email"
+                                ],
+                                "properties": {
+                                  "username": {
+                                    "type": "string",
+                                    "minLength": 1
+                                  },
+                                  "email": {
+                                    "type": "string",
+                                    "minLength": 1
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          "required": [
+                            "name",
+                            "version",
+                            "description",
+                            "keywords",
+                            "date",
+                            "links",
+                            "publisher",
+                            "maintainers"
+                          ]
+                        },
+                        "score": {
+                          "type": "object",
+                          "properties": {
+                            "final": {
+                              "type": "number"
+                            },
+                            "detail": {
+                              "type": "object",
+                              "properties": {
+                                "quality": {
+                                  "type": "number"
+                                },
+                                "popularity": {
+                                  "type": "number"
+                                },
+                                "maintenance": {
+                                  "type": "number"
+                                }
+                              },
+                              "required": [
+                                "quality",
+                                "popularity",
+                                "maintenance"
+                              ]
+                            }
+                          },
+                          "required": [
+                            "final",
+                            "detail"
+                          ]
+                        },
+                        "searchScore": {
+                          "type": "number"
+                        }
+                      }
+                    }
+                  },
+                  "total": {
+                    "type": "number"
+                  },
+                  "time": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                },
+                "required": [
+                  "objects",
+                  "total",
+                  "time"
+                ],
+                "x-examples": {
+                  "example-1": {
+                    "objects": [
+                      {
+                        "package": {
+                          "name": "yargs",
+                          "version": "6.6.0",
+                          "description": "yargs the modern, pirate-themed, successor to optimist.",
+                          "keywords": [
+                            "argument",
+                            "args",
+                            "option",
+                            "parser",
+                            "parsing",
+                            "cli",
+                            "command"
+                          ],
+                          "date": "2016-12-30T16:53:16.023Z",
+                          "links": {
+                            "npm": "https://www.npmjs.com/package/yargs",
+                            "homepage": "http://yargs.js.org/",
+                            "repository": "https://github.com/yargs/yargs",
+                            "bugs": "https://github.com/yargs/yargs/issues"
+                          },
+                          "publisher": {
+                            "username": "bcoe",
+                            "email": "ben@npmjs.com"
+                          },
+                          "maintainers": [
+                            {
+                              "username": "bcoe",
+                              "email": "ben@npmjs.com"
+                            },
+                            {
+                              "username": "chevex",
+                              "email": "alex.ford@codetunnel.com"
+                            },
+                            {
+                              "username": "nexdrew",
+                              "email": "andrew@npmjs.com"
+                            },
+                            {
+                              "username": "nylen",
+                              "email": "jnylen@gmail.com"
+                            }
+                          ]
+                        },
+                        "score": {
+                          "final": 0.9237841281241451,
+                          "detail": {
+                            "quality": 0.9270640902288084,
+                            "popularity": 0.8484861649808381,
+                            "maintenance": 0.9962706951777409
+                          }
+                        },
+                        "searchScore": 100000.914
+                      }
+                    ],
+                    "total": 1,
+                    "time": "Wed Jan 25 2017 19:23:35 GMT+0000 (UTC)"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Registry": {
+        "description": "",
+        "type": "object",
+        "x-examples": {
+          "example-1": {
+            "db_name": "registry",
+            "doc_count": 399172,
+            "doc_del_count": 354,
+            "update_seq": 3351374,
+            "purge_seq": 0,
+            "compact_running": false,
+            "disk_size": 2118398075,
+            "data_size": 1600835750,
+            "instance_start_time": "1475135224217333",
+            "disk_format_version": 6,
+            "committed_update_seq": 3351374
+          }
+        },
+        "properties": {
+          "db_name": {
+            "type": "string",
+            "minLength": 1
+          },
+          "doc_count": {
+            "type": "integer"
+          },
+          "doc_del_count": {
+            "type": "integer"
+          },
+          "update_seq": {
+            "type": "integer"
+          },
+          "purge_seq": {
+            "type": "number"
+          },
+          "compact_running": {
+            "type": "boolean"
+          },
+          "disk_size": {
+            "type": "integer"
+          },
+          "data_size": {
+            "type": "integer"
+          },
+          "instance_start_time": {
+            "type": "string",
+            "minLength": 1
+          },
+          "disk_format_version": {
+            "type": "integer"
+          },
+          "committed_update_seq": {
+            "type": "integer"
+          }
+        },
+        "required": [
+          "db_name",
+          "doc_count",
+          "doc_del_count",
+          "update_seq",
+          "purge_seq",
+          "compact_running",
+          "disk_size",
+          "data_size",
+          "instance_start_time",
+          "disk_format_version",
+          "committed_update_seq"
+        ]
+      },
+      "Package": {
+        "description": "",
+        "type": "object",
+        "x-examples": {
+          "example-1": {
+            "_attachments": {},
+            "_id": "tiny-tarball",
+            "_rev": "3-085759e977d42299e64a35aedc17d250",
+            "author": {
+              "email": "ben@npmjs.com",
+              "name": "Ben Coe"
+            },
+            "description": "tiny tarball used for health checks",
+            "dist-tags": {
+              "latest": "1.0.0"
+            },
+            "license": "ISC",
+            "maintainers": [
+              {
+                "email": "ben@npmjs.com",
+                "name": "bcoe"
+              }
+            ],
+            "name": "tiny-tarball",
+            "readme": "# TinyTarball\n\ntiny-tarball used for health checks\n\n**don't unpublish me!**\n",
+            "readmeFilename": "README.md",
+            "time": {
+              "1.0.0": "2015-03-24T00:12:24.039Z",
+              "created": "2015-03-24T00:12:24.039Z",
+              "modified": "2015-05-16T22:27:54.741Z"
+            },
+            "versions": {
+              "1.0.0": {
+                "_from": ".",
+                "_id": "tiny-tarball@1.0.0",
+                "_nodeVersion": "1.5.0",
+                "_npmUser": {
+                  "email": "bencoe@gmail.com",
+                  "name": "bcoe"
+                },
+                "_npmVersion": "2.7.0",
+                "_shasum": "bbf102d5ae73afe2c553295e0fb02230216f65b1",
+                "author": {
+                  "email": "ben@npmjs.com",
+                  "name": "Ben Coe"
+                },
+                "description": "tiny tarball used for health checks",
+                "directories": {},
+                "dist": {
+                  "shasum": "bbf102d5ae73afe2c553295e0fb02230216f65b1",
+                  "tarball": "https://registry.npmjs.org/tiny-tarball/-/tiny-tarball-1.0.0.tgz"
+                },
+                "license": "ISC",
+                "main": "index.js",
+                "maintainers": [
+                  {
+                    "email": "bencoe@gmail.com",
+                    "name": "bcoe"
+                  }
+                ],
+                "name": "tiny-tarball",
+                "scripts": {
+                  "test": "echo \"Error: no test specified\" && exit 1"
+                },
+                "version": "1.0.0"
+              }
+            }
+          }
+        },
+        "properties": {
+          "_attachments": {
+            "type": "object"
+          },
+          "_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "_rev": {
+            "type": "string",
+            "minLength": 1
+          },
+          "author": {
+            "type": "object",
+            "required": [
+              "email",
+              "name"
+            ],
+            "properties": {
+              "email": {
+                "type": "string",
+                "minLength": 1
+              },
+              "name": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          },
+          "description": {
+            "type": "string",
+            "minLength": 1
+          },
+          "dist-tags": {
+            "type": "object",
+            "required": [
+              "latest"
+            ],
+            "properties": {
+              "latest": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          },
+          "license": {
+            "type": "string",
+            "minLength": 1
+          },
+          "maintainers": {
+            "type": "array",
+            "uniqueItems": true,
+            "minItems": 1,
+            "items": {
+              "type": "object",
+              "properties": {
+                "email": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "name": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              },
+              "required": [
+                "email",
+                "name"
+              ]
+            }
+          },
+          "name": {
+            "type": "string",
+            "minLength": 1
+          },
+          "readme": {
+            "type": "string",
+            "minLength": 1
+          },
+          "readmeFilename": {
+            "type": "string",
+            "minLength": 1
+          },
+          "time": {
+            "type": "object",
+            "required": [
+              "1.0.0",
+              "created",
+              "modified"
+            ],
+            "properties": {
+              "1.0.0": {
+                "type": "string",
+                "minLength": 1
+              },
+              "created": {
+                "type": "string",
+                "minLength": 1
+              },
+              "modified": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          },
+          "versions": {
+            "type": "object",
+            "required": [
+              "additionalProperties"
+            ],
+            "properties": {
+              "additionalProperties": {
+                "$ref": "#/components/schemas/Version"
+              }
+            }
+          }
+        },
+        "required": [
+          "_attachments",
+          "_id",
+          "_rev",
+          "author",
+          "description",
+          "dist-tags",
+          "license",
+          "maintainers",
+          "name",
+          "readme",
+          "readmeFilename",
+          "time",
+          "versions"
+        ]
+      },
+      "Version": {
+        "description": "",
+        "type": "object",
+        "properties": {
+          "_from": {
+            "type": "string",
+            "minLength": 1
+          },
+          "_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "_nodeVersion": {
+            "type": "string",
+            "minLength": 1
+          },
+          "_npmUser": {
+            "type": "object",
+            "properties": {
+              "email": {
+                "type": "string",
+                "minLength": 1
+              },
+              "name": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "required": [
+              "email",
+              "name"
+            ]
+          },
+          "_npmVersion": {
+            "type": "string",
+            "minLength": 1
+          },
+          "_shasum": {
+            "type": "string",
+            "minLength": 1
+          },
+          "author": {
+            "type": "object",
+            "properties": {
+              "email": {
+                "type": "string",
+                "minLength": 1
+              },
+              "name": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "required": [
+              "email",
+              "name"
+            ]
+          },
+          "description": {
+            "type": "string",
+            "minLength": 1
+          },
+          "directories": {
+            "type": "object",
+            "properties": {},
+            "required": []
+          },
+          "dist": {
+            "type": "object",
+            "properties": {
+              "shasum": {
+                "type": "string",
+                "minLength": 1
+              },
+              "tarball": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "required": [
+              "shasum",
+              "tarball"
+            ]
+          },
+          "license": {
+            "type": "string",
+            "minLength": 1
+          },
+          "main": {
+            "type": "string",
+            "minLength": 1
+          },
+          "maintainers": {
+            "type": "array",
+            "uniqueItems": true,
+            "minItems": 1,
+            "items": {
+              "required": [
+                "email",
+                "name"
+              ],
+              "properties": {
+                "email": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "name": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              }
+            }
+          },
+          "name": {
+            "type": "string",
+            "minLength": 1
+          },
+          "scripts": {
+            "type": "object",
+            "properties": {
+              "test": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "required": [
+              "test"
+            ]
+          },
+          "version": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "_from",
+          "_id",
+          "_nodeVersion",
+          "_npmUser",
+          "_npmVersion",
+          "_shasum",
+          "author",
+          "description",
+          "directories",
+          "dist",
+          "license",
+          "main",
+          "maintainers",
+          "name",
+          "scripts",
+          "version"
+        ],
+        "x-examples": {
+          "example-1": {
+            "_from": ".",
+            "_id": "tiny-tarball@1.0.0",
+            "_nodeVersion": "1.5.0",
+            "_npmUser": {
+              "email": "bencoe@gmail.com",
+              "name": "bcoe"
+            },
+            "_npmVersion": "2.7.0",
+            "_shasum": "bbf102d5ae73afe2c553295e0fb02230216f65b1",
+            "author": {
+              "email": "ben@npmjs.com",
+              "name": "Ben Coe"
+            },
+            "description": "tiny tarball used for health checks",
+            "directories": {},
+            "dist": {
+              "shasum": "bbf102d5ae73afe2c553295e0fb02230216f65b1",
+              "tarball": "https://registry.npmjs.org/tiny-tarball/-/tiny-tarball-1.0.0.tgz"
+            },
+            "license": "ISC",
+            "main": "index.js",
+            "maintainers": [
+              {
+                "email": "bencoe@gmail.com",
+                "name": "bcoe"
+              }
+            ],
+            "name": "tiny-tarball",
+            "scripts": {
+              "test": "echo \"Error: no test specified\" && exit 1"
+            },
+            "version": "1.0.0"
+          }
+        }
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "Meta Endpoints"
+    },
+    {
+      "name": "Package Endpoints"
+    }
+  ]
+}
